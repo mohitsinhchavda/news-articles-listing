@@ -1,0 +1,32 @@
+{
+  "name": "news-articles-listing",
+  "author": "mohit.chavda1997@gmail.com",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Lists news articles",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node esbuild.config.js --build",
+    "start": "node esbuild.config.js --start"
+  },
+  "keywords": [
+    "news",
+    "new article POC",
+    "news articles",
+    "news articles list"
+  ],
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "esbuild": "^0.23.0",
+    "esbuild-sass-plugin": "^3.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "esbuild-plugin-css-modules": "^0.3.0"
+  }
+}
