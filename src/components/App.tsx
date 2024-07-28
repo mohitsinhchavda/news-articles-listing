@@ -10,10 +10,10 @@ export const App = (props: { message: string }) => {
   }, [count]);
 
   return (
-    <>
-      <h1 className="something_not_happening">{props.message}</h1>
+    <div className="something_not_happening">
+      <h1 className="something_happening_now">{props.message}</h1>
       <h2>Count: {count}</h2>
       <button onClick={increment}>Increment</button>
-    </>
+    </div>
   );
 };

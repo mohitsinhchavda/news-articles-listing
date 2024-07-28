@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import esbuild from 'esbuild';
+import { sassPlugin } from 'esbuild-sass-plugin';
 
 // enabling usage of env variables
 dotenv.config();
@@ -7,13 +8,15 @@ const args = process.argv;
 
 // common cnonfig for local and hosting envs
 const config = {
-  logLevel: 'info',
-  entryPoints: ['src/index.ts'],
-  outfile: 'public/build/bundle.js',
+  logLevel: "info",
+  entryPoints: ["src/index.ts"],
+  outfile: "public/build/bundle.js",
   bundle: true,
   define: {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production'),
   },
+  plugins: [sassPlugin()],
+  loader: { '.js': 'jsx', '.tsx': 'tsx' },
 };
 
 
@@ -52,9 +55,4 @@ if (args.includes('--start')) {
       console.error(e);
       process.exit(1);
     });
-    await esbuild.build({
-      entryPoints: ['src/styles/main.css'],
-      bundle: true,
-      outfile: 'src/styles/out.css',
-    })
 }
