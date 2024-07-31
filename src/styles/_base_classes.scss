@@ -1,0 +1,161 @@
+/* Fonts */
+body {
+  font-family: "Inter", sans-serif;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+$theme_colors: (
+  primaryColor: #5113d7,
+  errorColor: #ff0000,
+  grayColor:(
+    10: #DEE1E6,
+    20: #F8F9FA,
+    50: #565D6D,
+    100: #f5f5f5,
+    200: #171A1F,
+    300: #1E2128,
+    400: #a2a3a5),
+);
+$max-app-width: 1280px;
+$max-app-height: 100vh;
+$pagination-height: 3rem;
+$app-top-padding: 3rem;
+
+
+@function color($color-name, $shade: null) {
+  $colors: map-get($theme_colors, $color-name);
+
+  @if $shade {
+    @return map-get($colors, $shade);
+  }
+
+  @return $colors;
+}
+
+
+@mixin generate-color-classes($color-name) {
+  $color-shades: map-get($theme_colors, $color-name);
+
+  @each $shade, $value in $color-shades {
+    .#{$color-name}-#{$shade} {
+      color: color($color-name, $shade);
+    }
+
+    .bg-#{$color-name}-#{$shade} {
+      background-color: color($color-name, $shade);
+    }
+
+    .border-#{$color-name}-#{$shade} {
+      border-color: color($color-name, $shade);
+    }
+  }
+}
+
+
+@mixin generate-all-color-classes($color-map) {
+  @each $color-name, $shades in $color-map {
+    @if type-of($shades)=='map' {
+
+      // Iterate over each shade in the nested map
+      @each $shade, $value in $shades {
+        .#{$color-name}-#{$shade} {
+          color: $value;
+        }
+
+        .bg-#{$color-name}-#{$shade} {
+          background-color: $value;
+        }
+
+        .border-#{$color-name}-#{$shade} {
+          border-color: $value;
+        }
+      }
+    }
+
+    @else {
+
+      // Handle non-nested color maps (for primaryColor, errorColor, etc.)
+      .#{$color-name} {
+        color: $shades;
+      }
+
+      .bg-#{$color-name} {
+        background-color: $shades;
+      }
+
+      .border-#{$color-name} {
+        border-color: $shades;
+      }
+    }
+  }
+}
+
+// Generate all color classes from the color palette
+@include generate-all-color-classes($theme_colors);
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewport-height {
+  height: 100vh;
+}
+
+.viewport-width {
+  width: 100vw;
+}
+
+.viewport-height-width {
+  @extend .viewport-height;
+  @extend .viewport-width;
+}
+
+// breakpoint
+$breakpoint-small: 480px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 1024px;
+$breakpoint-extra-large: 1280px;
+
+// Mixin for media queries
+@mixin respond-to($breakpoint) {
+  @if $breakpoint ==small {
+    @media (max-width: $breakpoint-small) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==medium {
+    @media (max-width: $breakpoint-medium) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==large {
+    @media (max-width: $breakpoint-large) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==xl {
+    @media (max-width: $breakpoint-extra-large) {
+      @content;
+    }
+  }
+}
+
+// Define the mixin for multiline ellipsis
+@mixin multiline-ellipsis($lines) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

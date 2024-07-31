@@ -1,0 +1,39 @@
+@import "normalize";
+@import "base_classes";
+@import "main";
+@import "nav";
+@import "pagination";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 0 3rem;
+    width: $max-app-width;
+    @include respond-to(xl) {
+        padding: 3rem 2rem 3rem 2rem;
+    }
+    @include respond-to(large) {
+        padding: 1rem;
+    }
+    @include respond-to(medium) {
+        padding: 0.5rem;
+    }
+}
+
+.main {
+    width: 75%;
+    overflow-y: auto;
+    @include respond-to(xl) {
+        width: 100%;
+    }
+}
+
+.nav-main-container {
+    display: flex;
+    flex-direction: row;
+    height: calc($max-app-height - ($app-top-padding + $pagination-height));
+    @include respond-to(large) {
+        flex-direction: column;
+        height: auto
+    }
+}

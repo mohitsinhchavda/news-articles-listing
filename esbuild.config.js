@@ -13,7 +13,7 @@ const config = {
   outfile: "public/build/bundle.js",
   bundle: true,
   define: {
-    NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production'),
+    "process.env": JSON.stringify(process.env),
   },
   plugins: [sassPlugin()],
   loader: { '.js': 'jsx', '.tsx': 'tsx' },

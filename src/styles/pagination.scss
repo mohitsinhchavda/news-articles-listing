@@ -1,0 +1,32 @@
+footer{
+    height: $pagination-height;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .pagination-buttons {
+        max-height: 100%;
+        display: flex;
+        gap: 0.2rem;
+        .pagination-button {
+            @extend .center;
+            cursor: pointer;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            line-height: 1.25rem;
+            user-select: none;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+        .active-pagination-button {
+            @extend .pagination-button;
+            @extend .bg-grayColor-300;
+            color: white;
+            transition: all 0.25s ease;
+        }
+        .disabled-pagination-btn{
+            @extend .grayColor-400;
+        }
+    }
+}
