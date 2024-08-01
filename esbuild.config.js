@@ -27,6 +27,7 @@ if (args.includes('--build')) {
       ...config,
       minify: true,
       sourcemap: false,
+      treeShaking: true,
     })
     .catch((e) => {
       console.error(e);
