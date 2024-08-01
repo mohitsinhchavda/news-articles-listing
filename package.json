@@ -37,7 +37,6 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@tim-w-james/eslint-config": "^2.3.4",
     "@types/dompurify": "^3.0.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
