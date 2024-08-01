@@ -1,7 +1,6 @@
 import React from 'react';
 import { Article } from '../rest-apis/reducers/types';
 import ArticleComponent from "./ArticleComponent";
-import { Oval } from 'react-loader-spinner';
 import NoDataComponent from "./common/NoDataComponent";
 
 
