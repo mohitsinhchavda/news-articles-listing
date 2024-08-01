@@ -10,9 +10,10 @@ import { ArticleReducerState } from "./types";
 
 const initState = {
     newsList: {
-        isLoading: false,
+        isLoading: true,
         isError: false,
         data: [],
+        isNodata: false,
     },
 };
 
@@ -40,6 +41,7 @@ export default function newsListing(prevState: ArticleReducerState = initState, 
                     isLoading: false,
                     isError: false,
                     data,
+                    isNodata: data.length === 0,
                 },
             };
         }

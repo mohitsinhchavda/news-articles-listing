@@ -8,13 +8,14 @@ export type Article = Readonly<{
     source: string;
 }>;
 
-export type NewsListState = Readonly<{
+export interface NewsListState {
     isLoading: boolean;
     isError: boolean;
     data: Article[];
     lastSynced?: string;
-    errorMessage?: string;
-}>;
+    errorMessage?: string | null;
+    isNodata: boolean;
+};
 
 export type ArticleReducerState = Readonly<{
     newsList: NewsListState;

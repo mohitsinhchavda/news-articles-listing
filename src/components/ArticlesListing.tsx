@@ -1,18 +1,13 @@
 import React from 'react';
-import { Article } from '../rest-apis/reducers/types';
+import { Article, NewsListState } from '../rest-apis/reducers/types';
 import ArticleComponent from "./ArticleComponent";
 import NoDataComponent from "./common/NoDataComponent";
 
-
-interface ArticlesListingProps {
-    data: Article[];
-    isLoading: boolean;
-    isError: boolean;
-    errorMessage?: string;
+interface ArticlesListingProps extends NewsListState {
+    isDataSetInLocalStateAfterApplyingFilters: boolean;
 }
 
-
-const ArticlesListing = ({ data, isLoading, isError, errorMessage  }: ArticlesListingProps) => {
+const ArticlesListing = ({ isDataSetInLocalStateAfterApplyingFilters, data, isLoading, isError, errorMessage, isNodata  }: ArticlesListingProps) => {
     return (
         isLoading 
             ?
@@ -30,7 +25,7 @@ const ArticlesListing = ({ data, isLoading, isError, errorMessage  }: ArticlesLi
                 ?
                 <h2 className='error-text'>{errorMessage || "Something went wrong!"}</h2>
                 :
-                data.length === 0
+                (isNodata) || (isDataSetInLocalStateAfterApplyingFilters && data?.length === 0)
                 ?
                 <NoDataComponent />
                 :

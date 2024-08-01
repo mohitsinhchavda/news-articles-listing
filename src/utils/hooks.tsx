@@ -23,13 +23,15 @@ interface useFiltersReturnType {
     filteredData: Article[];
     setFilters: Function;
     areAnyFiltersApplied: boolean;
+    isDataSetInLocalStateAfterApplyingFilters: boolean;
 }
 
 export const useFilters = ({ reduxData }: useFiltersArgs): useFiltersReturnType => {
     const [filters, setFilters] = React.useState<FilterGroup[]>([]);
+    const [isDataSetInLocalStateAfterApplyingFilters, setIsDataSetInLocalStateAfterApplyingFilters] = useState<boolean>(false);
 
     useEffect(() => {
-        setFilters(derivedFilterData(reduxData));
+        setFilters(() => derivedFilterData(reduxData));
     }, [reduxData]);
 
     const appliedFilters = useMemo(() => {
@@ -121,8 +123,11 @@ export const useFilters = ({ reduxData }: useFiltersArgs): useFiltersReturnType 
                     return 0;
                 })];
             }
+            // first time execution comes here only
+            // because the filters are by default applied
+            setIsDataSetInLocalStateAfterApplyingFilters(true);
         }
-
+        
         return filteredNewsListingData;
     }, [reduxData, filters, appliedFilters]);
 
@@ -130,7 +135,8 @@ export const useFilters = ({ reduxData }: useFiltersArgs): useFiltersReturnType 
         filteredData,
         filters,
         setFilters,
-        areAnyFiltersApplied
+        areAnyFiltersApplied,
+        isDataSetInLocalStateAfterApplyingFilters
     }
 }
 
