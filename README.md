@@ -14,7 +14,7 @@ This below badge shows latest status of the deployment done by the developer.
 # But if you want to run it locally, here are the standard steps
 
 1. Run `npm install`
-2. Add .env.local file into the root directory of the project
+2. Add .env file into the root directory of the project
 3. Add this env values to the file
 `
 NODE_ENV=development

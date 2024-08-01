@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterGroup } from '@/utils';
+import { FilterGroup, FilterItem } from '@/utils';
 import FilterTitle from './FilterTitle';
 import CheckboxContainer from './CheckboxContainer';
 
@@ -14,22 +14,22 @@ const Filters = ({ filters = [], setFilters }: FiltersProps) => {
     return (
         <div className='filters'>
             {
-                filters?.map((filters: any, index: number) => {
+                filters?.map((filter: FilterGroup, index: number) => {
                     return (
-                        <div key={`${filters.name}${index}`}>
+                        <div key={`${filter.name}${index}`}>
                             <div>
-                                <FilterTitle name={filters.name.label} />
+                                <FilterTitle name={filter.name.label} />
                             </div>
                             <div className='checkboxes-container'>
                                 {
-                                    filters?.data?.map((checkboxItem: any, index: number) => {
+                                    filter?.data?.map((checkboxItem: FilterItem) => {
                                         return (
                                             <CheckboxContainer
                                                 key={`${checkboxItem.label}`}
                                                 label={checkboxItem.label}
                                                 isChecked={checkboxItem.isChecked}
                                                 setFilters={setFilters}
-                                                filterTypeDataNameLabel={filters.name.label}
+                                                filterTypeDataNameLabel={filter.name.label}
                                                 isAscFlagExists={"isAsc" in checkboxItem}
                                                 isAsc={checkboxItem.isAsc}
                                             />

@@ -55,10 +55,10 @@ async function get<T>(url: string, options?: { baseURL?: string; params?: Record
       return { status: false, message: response.statusText };
     }
     return { status: false, message: "Something went wrong!" };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       status: false,
-      message: error.message,
+      message: error instanceof Error ? error?.message : "Something went wrong!",
     };
   }
 }

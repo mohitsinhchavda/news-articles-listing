@@ -14,7 +14,7 @@ import { Article } from "@/rest-apis/reducers/types";
 import DOMPurify from "dompurify";
 import { PaginationConstants } from "./pagination";
 
-interface useFiltersArgs {
+export interface useFiltersArgs {
     reduxData: Article[]
 }
 
@@ -35,7 +35,7 @@ export const useFilters = ({ reduxData }: useFiltersArgs): useFiltersReturnType 
     const appliedFilters = useMemo(() => {
         return filters.map(filterItem => {
             const { data } = filterItem;
-            const appliedSubFilters = (data as SortBySubFilterType[]).filter((d: any) => d.isChecked);
+            const appliedSubFilters = (data as SortBySubFilterType[]).filter((d: SortBySubFilterType) => d.isChecked);
 
             if (appliedSubFilters.length) {
                 return {

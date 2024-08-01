@@ -1,4 +1,4 @@
-import { takeLatest, call, put, CallEffect} from "redux-saga/effects";
+import { takeLatest, call, put} from "redux-saga/effects";
 import {
     START_FETCHING_NEWS_LISTING,
     SUCCESS_FETCHING_NEWS_LISTING,

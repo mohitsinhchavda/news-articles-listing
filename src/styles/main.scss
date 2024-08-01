@@ -54,7 +54,6 @@
 .error-text {
   color: map-get($theme_colors, errorColor);
   @extend .center;
-  @extend .viewport-height-width;
 }
 
 .no-data-text {

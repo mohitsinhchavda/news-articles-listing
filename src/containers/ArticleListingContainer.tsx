@@ -7,6 +7,15 @@ import ArticlesListing from "../components/ArticlesListing";
 import Pagination from '@/components/Pagination';
 import { useFilters, usePagination } from '@/utils/hooks';
 import FiltersMainContainer from '@/components/Filters/FiltersMainContainer';
+import { Article } from '@/rest-apis/reducers/types';
+
+
+interface UseNewsListingSelector {
+  isLoading: boolean;
+  data: Article[]; // Replace with actual data structure
+  errorMessage: string | null;
+  isError: boolean;
+}
 
 const ArticleListingContainer = () => {
 
@@ -16,7 +25,7 @@ const ArticleListingContainer = () => {
     dispatch({ type: START_FETCHING_NEWS_LISTING });
   }, []);
 
-  const { isLoading, data: reduxData, errorMessage, isError } = useNewsListingSelector();
+  const { isLoading, data: reduxData, errorMessage, isError } = useNewsListingSelector() as UseNewsListingSelector;
 
   // Filter related stuff
   const {

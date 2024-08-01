@@ -13,7 +13,7 @@ interface ArticlesListingProps {
 }
 
 
-const ArticlesListing = ({ data, isLoading, isError, errorMessage }: ArticlesListingProps) => {
+const ArticlesListing = ({ data, isLoading, isError, errorMessage  }: ArticlesListingProps) => {
     return (
         isLoading 
             ?
@@ -29,7 +29,7 @@ const ArticlesListing = ({ data, isLoading, isError, errorMessage }: ArticlesLis
             :
             isError
                 ?
-                <h2 className='error-text'>{errorMessage}</h2>
+                <h2 className='error-text'>{errorMessage || "Something went wrong!"}</h2>
                 :
                 data.length === 0
                 ?
