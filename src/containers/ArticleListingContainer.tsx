@@ -37,7 +37,8 @@ const ArticleListingContainer = () => {
     setCurrentPage,
     totalPages
   } = usePagination({
-    filteredData
+    filteredData,
+    filters
   });
 
   return (

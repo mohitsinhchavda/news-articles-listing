@@ -19,25 +19,25 @@ const CheckboxContainer = ({ label, isChecked = false, setFilters, filterTypeDat
         setFilters((prevState: FilterGroup[]): FilterGroup[] => {
             const indexOfFoundFilterGroup = prevState.findIndex(filterType => filterType.name.label === filterTypeDataNameLabel);
             if (indexOfFoundFilterGroup === -1) return prevState;
-    
+
             const filterGroup = prevState[indexOfFoundFilterGroup];
             const indexOfFoundFilterName = (filterGroup.data as FilterItem[]).findIndex((filterName) => {
                 return filterName.label === label;
             });
-    
+
             if (indexOfFoundFilterName === -1) return prevState;
-    
+
             const updatedData = [
                 ...filterGroup.data.slice(0, indexOfFoundFilterName),
                 { ...filterGroup.data[indexOfFoundFilterName], isChecked: !isChecked },
                 ...filterGroup.data.slice(indexOfFoundFilterName + 1),
             ];
-    
+
             const updatedFilterGroup = {
                 ...filterGroup,
                 data: updatedData,
             };
-    
+
             return [
                 ...prevState.slice(0, indexOfFoundFilterGroup),
                 updatedFilterGroup,
@@ -45,7 +45,7 @@ const CheckboxContainer = ({ label, isChecked = false, setFilters, filterTypeDat
             ];
         });
     }, [isChecked, label, filterTypeDataNameLabel, setFilters]);
-    
+
 
     const onSortToggle = useCallback(() => {
         setFilters((prevState: FilterGroup[]): FilterGroup[] => {
@@ -72,7 +72,7 @@ const CheckboxContainer = ({ label, isChecked = false, setFilters, filterTypeDat
                 ];
             }
         })
-    }, [isAsc,isChecked]);
+    }, [isAsc, isChecked]);
 
     return (
         <div className='checkbox-container'>
@@ -83,8 +83,8 @@ const CheckboxContainer = ({ label, isChecked = false, setFilters, filterTypeDat
             {
                 isAscFlagExists
                     ?
-                    <div className={clsx( {
-                        "selected-sorting-arrow": isChecked ,
+                    <div className={clsx({
+                        "selected-sorting-arrow": isChecked,
                         'unselected-sorting-arrow': !isChecked,
                     })} onClick={onSortToggle}>
                         {

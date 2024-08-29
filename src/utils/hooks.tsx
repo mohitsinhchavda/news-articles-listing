@@ -144,6 +144,7 @@ export const useFilters = ({ reduxData }: useFiltersArgs): useFiltersReturnType 
 
 interface usePaginationArgs {
     filteredData: Article[],
+    filters: FilterGroup[],
 }
 
 interface usePaginationReturnType {
@@ -153,7 +154,7 @@ interface usePaginationReturnType {
     totalPages: number[] | undefined,
 }
 
-export const usePagination = ({ filteredData }: usePaginationArgs): usePaginationReturnType => {
+export const usePagination = ({ filteredData, filters }: usePaginationArgs): usePaginationReturnType => {
     const [currentPage, setCurrentPage] = React.useState(1);
     const [paginatedData, setPaginatedData] = React.useState<Article[]>([]);
     const [totalPages, setTotalPages] = useState<number[]>();
@@ -165,6 +166,10 @@ export const usePagination = ({ filteredData }: usePaginationArgs): usePaginatio
             return Array.from({ length: totalPages }, (_, index) => index + 1);
         });
     }, [filteredData, currentPage]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [filters]);
 
     return {
         currentPage,
